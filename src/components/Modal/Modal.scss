@@ -1,0 +1,55 @@
+@use "../../scss/" as *;
+
+.modal {
+    @include flex(center, center);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: rgba($color: $black, $alpha: 0.4);
+    opacity: 0;
+    visibility: hidden;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__content {
+        padding: 2rem;
+        // border: 2px solid $main-color;
+        border-radius: $CardBorder-radius;
+        background-color: $body-bg;
+        width: 60%;
+        opacity: 0;
+        transform: translateY(-250px);
+
+        box-shadow: rgba(195, 31, 31, 0.4) 0px 4px 20px, rgba(219, 39, 39, 0.3) 0px 7px 13px -3px,
+            rgba(233, 12, 12, 0.2) 0px -3px 0px inset;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+        position: relative;
+        @include tablet {
+            width: 80%;
+        }
+
+        &__close {
+            position: absolute;
+            right: -3px;
+            top: -3px;
+            font-size: 3rem;
+            cursor: pointer;
+
+            &:hover {
+                color: $main-color;
+            }
+        }
+    }
+
+    &.active &__content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
